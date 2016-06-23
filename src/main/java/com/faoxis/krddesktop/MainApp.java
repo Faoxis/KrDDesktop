@@ -16,12 +16,19 @@ public class MainApp {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ChartDrawing chartDrawing = new ChartDrawing("График положения шторки", "Время", "Координата");
+        JLabel label = new JLabel("Программа только что запустилась");
+
+        UpdateChartThread updateChart = new UpdateChartThread(chartDrawing.getChartPanel());
+        updateChart.run();
+        UpdateLabelThread updateLabelThread = new UpdateLabelThread(label);
+        updateLabelThread.run();
 
         frame.setSize(800, 500);
         frame.setMinimumSize(new Dimension(800, 500));
         frame.getContentPane().add(new SettingsMenu(), BorderLayout.NORTH);
         frame.getContentPane().add(chartDrawing.getChartPanel(), BorderLayout.CENTER);
         frame.getContentPane().add(new ButtonMenu(), BorderLayout.EAST);
+        frame.getContentPane().add(label, BorderLayout.SOUTH);
         frame.setVisible(true);
     }
 }
