@@ -12,6 +12,15 @@ public class SettingsContainer {
     private static String state = "Программа только что запустилась";
     private static PortConnection portConnection;
 
+    private boolean startGraphic = false;
+
+    public boolean isStartGraphic() {
+        return startGraphic;
+    }
+
+    public void setStartGraphic(boolean startGraphic) {
+        this.startGraphic = startGraphic;
+    }
 
     public String getNumberOfCom() {
         return numberOfCom;

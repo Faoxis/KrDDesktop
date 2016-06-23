@@ -1,6 +1,7 @@
 package com.faoxis.krddesktop;
 
 import com.faoxis.krddesktop.view.center.ChartDrawing;
+import com.faoxis.krddesktop.view.right.ButtonMenu;
 import com.faoxis.krddesktop.view.top.SettingsMenu;
 
 import javax.swing.*;
@@ -15,11 +16,12 @@ public class MainApp {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ChartDrawing chartDrawing = new ChartDrawing("График положения шторки", "Время", "Координата");
-        
+
         frame.setSize(800, 500);
         frame.setMinimumSize(new Dimension(800, 500));
         frame.getContentPane().add(new SettingsMenu(), BorderLayout.NORTH);
-        frame.getContentPane().add(chartDrawing.getChartPanel());
+        frame.getContentPane().add(chartDrawing.getChartPanel(), BorderLayout.CENTER);
+        frame.getContentPane().add(new ButtonMenu(), BorderLayout.EAST);
         frame.setVisible(true);
     }
 }

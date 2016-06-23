@@ -39,6 +39,7 @@ public class ChartDrawing {
         dataset.addSeries(channel1);
         //dataset.addSeries(channel2);
 
+        // XYDataset is
         XYDataset xyDataset = dataset;
 
         JFreeChart chart = ChartFactory.createXYLineChart(
