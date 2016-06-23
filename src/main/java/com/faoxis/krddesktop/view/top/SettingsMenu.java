@@ -1,9 +1,7 @@
 package com.faoxis.krddesktop.view.top;
 
 import com.faoxis.krddesktop.port.PortConnection;
-import com.faoxis.krddesktop.view.top.controllers.CheckConnectionListener;
-import com.faoxis.krddesktop.view.top.controllers.RefreshPortsListener;
-import com.faoxis.krddesktop.view.top.controllers.SelectPortsListener;
+import com.faoxis.krddesktop.view.top.controllers.*;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -11,9 +9,9 @@ import java.util.HashMap;
 /**
  * Created by Sergei on 21.06.2016.
  */
-public class TopMenu extends JMenuBar {
+public class SettingsMenu extends JMenuBar {
 
-    public TopMenu() {
+    public SettingsMenu() {
         super();
 
         JMenu portMenu = new JMenu("Порт");
@@ -36,9 +34,9 @@ public class TopMenu extends JMenuBar {
         JMenuItem checkConnection = new JMenuItem("Проверить соединение");
         checkConnection.addActionListener(new CheckConnectionListener());
         JMenuItem openConnection = new JMenuItem("Подключиться");
-//        openConnection.addActionListener(new OpenConnectionListener());
+        openConnection.addActionListener(new OpenConnectionListener());
         JMenuItem closeConnection = new JMenuItem("Отключиться");
-//        closeConnection.addActionListener(new CloseConnectionListener());
+        closeConnection.addActionListener(new CloseConnectionListener());
         JMenu connectionMenu = new JMenu("Соединение");
         connectionMenu.add(checkConnection);
         connectionMenu.add(openConnection);
