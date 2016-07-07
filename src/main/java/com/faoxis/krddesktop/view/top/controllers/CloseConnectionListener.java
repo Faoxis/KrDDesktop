@@ -1,6 +1,6 @@
 package com.faoxis.krddesktop.view.top.controllers;
 
-import com.faoxis.krddesktop.settings.SettingsContainer;
+import com.faoxis.krddesktop.config.Configuration;
 import jssc.SerialPortException;
 
 import javax.swing.*;
@@ -15,18 +15,18 @@ public class CloseConnectionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
 
-            if (SettingsContainer.instance().getPortConnection() == null) {
+            if (Configuration.instance().getPortConnection() == null) {
                 JOptionPane.showMessageDialog(null, "Невозможно закрыть соединение, которого нет.");
                 return;
             }
 
-            SettingsContainer.instance().getPortConnection().closePortConnection();
-            SettingsContainer.instance().setState("Соединение отключено.");
+            Configuration.instance().getPortConnection().closePortConnection();
+            Configuration.instance().setState("Соединение отключено.");
         } catch (SerialPortException ex) {
             JOptionPane.showMessageDialog(null, "Ошибка отключения устройства. " +
                     "Рекомендую выдернуть и всунуть проводок.");
         } finally {
-            SettingsContainer.instance().resetPortConnection();
+            Configuration.instance().resetPortConnection();
         }
     } // Конец метода actionPerformed
 } // Конец класса CloseConnectionListener

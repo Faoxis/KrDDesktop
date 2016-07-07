@@ -1,5 +1,6 @@
 package com.faoxis.krddesktop;
 
+import com.faoxis.krddesktop.view.bottom.UpdateLabelThread;
 import com.faoxis.krddesktop.view.center.ChartDrawing;
 import com.faoxis.krddesktop.view.right.ButtonMenu;
 import com.faoxis.krddesktop.view.top.SettingsMenu;
@@ -15,13 +16,14 @@ public class MainApp {
         JFrame frame = new JFrame("KrDDesktop_v1.00");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ChartDrawing chartDrawing = new ChartDrawing("График положения шторки", "Время", "Координата");
+        ChartDrawing chartDrawing = new ChartDrawing("График положения шторки", "Число пришедших байт", "Координата");
         JLabel label = new JLabel("Программа только что запустилась");
 
-        UpdateChartThread updateChart = new UpdateChartThread(chartDrawing.getChartPanel());
-        updateChart.run();
+        UpdateChartThread updateChart = new UpdateChartThread(chartDrawing.getChartPanel(), chartDrawing.getChannel1());
+        updateChart.start();
+
         UpdateLabelThread updateLabelThread = new UpdateLabelThread(label);
-        updateLabelThread.run();
+        updateLabelThread.start();
 
         frame.setSize(800, 500);
         frame.setMinimumSize(new Dimension(800, 500));

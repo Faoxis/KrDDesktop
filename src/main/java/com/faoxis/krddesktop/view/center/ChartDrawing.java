@@ -19,6 +19,14 @@ public class ChartDrawing {
     private XYSeries channel1;
     private XYSeries channel2;
 
+    public XYSeries getChannel1() {
+        return channel1;
+    }
+
+    public void setChannel1(XYSeries channel1) {
+        this.channel1 = channel1;
+    }
+
     public ChartDrawing(String name, String xLabel, String yLabel) {
         this.name = name;
         this.xLabel = xLabel;

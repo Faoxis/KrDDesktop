@@ -1,5 +1,6 @@
 package com.faoxis.krddesktop.port;
 
+import com.faoxis.krddesktop.control.DataCatcher;
 import jssc.*;
 
 /**
@@ -9,6 +10,7 @@ public class PortConnection {
 
     private SerialPort serialPort;
     private PortConnectionListener portConnectionListener;
+    private DataCatcher dataCatcher;
 
     public void writeByte(byte data) throws SerialPortException {
         serialPort.writeByte((byte) data);
@@ -19,7 +21,6 @@ public class PortConnection {
         this(port, SerialPort.BAUDRATE_115200);
     } // Конец конструктора с единственным параметром
     //------------------------------------------------------------------------------------------------------------//
-
 
     //------------------------------------- Конструктор с baudrate ----------------------------------------------//
     public PortConnection(String port, int baudrate) throws SerialPortException {
@@ -39,9 +40,8 @@ public class PortConnection {
                 SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
         // Устанавливаем ивент лисенер и маску
-        this.portConnectionListener = new PortConnectionListener(serialPort);
+        this.portConnectionListener = new PortConnectionListener(serialPort, dataCatcher);
         serialPort.addEventListener(portConnectionListener, SerialPort.MASK_RXCHAR);
-
     } // Конец конструктора со всеми параметрами
     //------------------------------------------------------------------------------------------------------------//
 
@@ -67,8 +67,5 @@ public class PortConnection {
         return SerialPortList.getPortNames();
     } // Конец метода getPorts()
     //------------------------------------------------------------------------------------------------------------//
-
-
-
 
 }

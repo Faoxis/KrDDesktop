@@ -1,7 +1,7 @@
 package com.faoxis.krddesktop.view.top.controllers;
 
 import com.faoxis.krddesktop.port.PortConnection;
-import com.faoxis.krddesktop.settings.SettingsContainer;
+import com.faoxis.krddesktop.config.Configuration;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -42,7 +42,7 @@ public class RefreshPortsListener implements ActionListener {
         portMenu.repaint();
 
         // Меняем статус
-        SettingsContainer.instance().setState("Список com-портов был успешно обновлен.");
+        Configuration.instance().setState("Список com-портов был успешно обновлен.");
     }
 }
 

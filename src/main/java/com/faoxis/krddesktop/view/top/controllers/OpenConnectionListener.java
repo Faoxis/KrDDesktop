@@ -1,7 +1,6 @@
 package com.faoxis.krddesktop.view.top.controllers;
 
-import com.faoxis.krddesktop.port.PortConnection;
-import com.faoxis.krddesktop.settings.SettingsContainer;
+import com.faoxis.krddesktop.config.Configuration;
 import jssc.SerialPortException;
 
 import javax.swing.*;
@@ -15,15 +14,15 @@ public class OpenConnectionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            if (SettingsContainer.instance().getPortConnection() == null) {
-                SettingsContainer.instance().setPortConnection(SettingsContainer.instance().getNumberOfCom());
-                SettingsContainer.instance().setState("Соединение установлено");
+            if (Configuration.instance().getPortConnection() == null) {
+                Configuration.instance().setPortConnection(Configuration.instance().getNumberOfCom());
+                Configuration.instance().setState("Соединение установлено");
             } else {
                 JOptionPane.showMessageDialog(null, "Соединение уже установлено.");
             }
         } catch (SerialPortException | NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Ошибка подключения к устройству.");
-            SettingsContainer.instance().resetPortConnection();
+            Configuration.instance().resetPortConnection();
         }
     } // Конец метода actionPerformed
 } // Конец класса OpenConnectionListener

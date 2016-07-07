@@ -1,6 +1,6 @@
 package com.faoxis.krddesktop.view.top.controllers;
 
-import com.faoxis.krddesktop.settings.SettingsContainer;
+import com.faoxis.krddesktop.config.Configuration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +16,8 @@ public class SelectPortsListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent event) {
-        SettingsContainer.instance().setNumberOfCom(portsName);
-        SettingsContainer.instance().setState("");
+        Configuration.instance().setNumberOfCom(portsName);
+        Configuration.instance().setState("Com-порт был выбран");
     }
 }
 

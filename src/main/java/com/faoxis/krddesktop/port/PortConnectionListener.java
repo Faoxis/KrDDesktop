@@ -1,5 +1,6 @@
 package com.faoxis.krddesktop.port;
 
+import com.faoxis.krddesktop.control.DataCatcher;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -10,8 +11,10 @@ public class PortConnectionListener implements SerialPortEventListener {
 
     private SerialPort serialPort;
     private int[] dataFromPort = {0};
+    private DataCatcher dataCatcher;
 
-    public PortConnectionListener(SerialPort serialPort) {
+    public PortConnectionListener(SerialPort serialPort, DataCatcher dataCatcher) {
+        this.dataCatcher = dataCatcher;
         this.serialPort = serialPort;
     }
 
@@ -38,6 +41,7 @@ public class PortConnectionListener implements SerialPortEventListener {
             try {
                 //Получаем ответ от устройства, обрабатываем данные и т.д.
                 this.dataFromPort = this.serialPort.readIntArray(1);
+                dataCatcher.addToData(this.dataFromPort[0]);
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }

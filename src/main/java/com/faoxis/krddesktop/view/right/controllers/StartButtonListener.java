@@ -1,8 +1,6 @@
 package com.faoxis.krddesktop.view.right.controllers;
 
-import com.faoxis.krddesktop.port.PortConnection;
-import com.faoxis.krddesktop.settings.SettingsContainer;
-import jssc.SerialPortException;
+import com.faoxis.krddesktop.config.Configuration;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +12,12 @@ import java.awt.event.ActionListener;
 public class StartButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (Configuration.instance().getPortConnection() != null) {
+            Configuration.instance().setStartGraphic(true);
 
+            Configuration.instance().setState("Программа находится в режиме построения графика.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Вначале необходимо произвести подключение.");
+        }
     } // Конец метода actionPerformed
 }
